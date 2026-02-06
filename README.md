@@ -9,10 +9,11 @@
 
 
 
-###
+## 🐍 Contribution Snake
 
-<br clear="both">
-
-<img src="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/snake.svg" alt="Snake animation" />
-
-###
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/snake-dark.svg">
+    <img src="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/snake.svg">
+  </picture>
+</p>
