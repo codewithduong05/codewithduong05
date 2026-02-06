@@ -5,17 +5,14 @@
     <img alt="Dashboard stats of @codewithduong05" src="https://next.ossinsight.io/widgets/official/compose-user-dashboard-stats/thumbnail.png?user_id=141724395&image_size=auto&color_scheme=light" width="771" height="auto">
   </picture>
 </a>
-<!--
-**codewithduong05/codewithduong05** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-Here are some ideas to get you started:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+
+
+###
+
+<br clear="both">
+
+<img src="https://raw.githubusercontent.com/vd-dev05/vd-dev05/output/snake.svg" alt="Snake animation" />
+
+###
