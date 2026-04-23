@@ -1,55 +1,33 @@
-name: Generate Pacman
+name: Generate pacman animation
 
 on:
-  schedule:
-    - cron: "0 */12 * * *"
+  schedule: # execute every 12 hours
+    - cron: "* */12 * * *"
+
   workflow_dispatch:
 
-permissions:
-  contents: write
+  push:
+    branches:
+    - main
 
 jobs:
-  build:
+  generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - name: generate pacman-contribution-graph.svg
+        uses: abozanona/pacman-contribution-graph@main
         with:
-          node-version: 18
+          github_user_name: ${{ github.repository_owner }}
 
-      - run: npm install
-        working-directory: src
 
-      - run: node index.js
-        working-directory: src
+      - name: push pacman-contribution-graph.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_USERNAME: codewithduong05
-
-      - name: Convert SVG → PNG
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          mkdir png
-          for f in src/frames/*.svg; do
-            convert $f png/$(basename ${f%.svg}.png)
-          done
-
-      - name: Create GIF
-        run: |
-          convert -delay 5 -loop 0 png/*.png pacman.gif
-
-      - name: Move output
-        run: |
-          rm -rf dist
-          mkdir dist
-          mv pacman.gif dist/
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
-          publish_branch: output
