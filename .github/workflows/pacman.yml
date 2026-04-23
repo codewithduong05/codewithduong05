@@ -43,6 +43,7 @@ jobs:
 
       - name: Move output
         run: |
+          rm -rf dist
           mkdir dist
           mv pacman.gif dist/
 
