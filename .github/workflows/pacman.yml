@@ -5,6 +5,9 @@ on:
     - cron: "0 */12 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,12 +19,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
         working-directory: src
 
-      - name: Run generator
-        run: npm run build
+      - run: npm run build
         working-directory: src
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,5 +31,6 @@ jobs:
       - name: Deploy SVG
         uses: peaceiris/actions-gh-pages@v3
         with:
-          publish_dir: dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: src/dist
           publish_branch: output
