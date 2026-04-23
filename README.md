@@ -7,8 +7,9 @@
 </a>
 
 ## pacman
-<img src="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/pacman.gif" />
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/pacman.gif" />
+</p>
 ## 🐍 Contribution Snake
 
 <p align="center">

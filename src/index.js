@@ -1,27 +1,27 @@
 import fs from "fs"
 import { fetchContributions } from "./github.js"
-import { generateSVG } from "./svg.js"
+import { generateFrame } from "./svg.js"
 
 const username = process.env.GITHUB_USERNAME
 const token = process.env.GITHUB_TOKEN
 
-if (!username || !token) {
-  throw new Error("Missing GITHUB_USERNAME or GITHUB_TOKEN")
-}
-
-console.log("Fetching contributions...")
 const weeks = await fetchContributions(username, token)
 
-console.log("Generating SVG...")
-console.log("Weeks:", weeks.length)
+// flatten points
+let points = []
+weeks.forEach((week, x) => {
+  week.contributionDays.forEach((day, y) => {
+    if (day.contributionCount > 0) {
+      points.push({ x, y })
+    }
+  })
+})
 
-const outputDir = "dist"
-const outputFile = `${outputDir}/pacman.svg`
+// tạo folder
+fs.mkdirSync("frames", { recursive: true })
 
-// 🔑 đảm bảo thư mục tồn tại (CI không có sẵn)
-fs.mkdirSync(outputDir, { recursive: true })
-
-const svg = generateSVG(weeks)
-fs.writeFileSync(outputFile, svg)
-
-console.log("SVG created at:", outputFile)
+// generate frames
+for (let i = 0; i < points.length; i++) {
+  const svg = generateFrame(points, i)
+  fs.writeFileSync(`frames/frame_${i}.svg`, svg)
+}

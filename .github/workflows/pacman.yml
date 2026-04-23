@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  pages: write
-  id-token: write
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -24,16 +22,33 @@ jobs:
       - run: npm install
         working-directory: src
 
-      - run: npm run build
+      - run: node index.js
         working-directory: src
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: codewithduong05
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: src/dist
+      - name: Convert SVG → PNG
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          mkdir png
+          for f in src/frames/*.svg; do
+            convert $f png/$(basename ${f%.svg}.png)
+          done
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Create GIF
+        run: |
+          convert -delay 5 -loop 0 png/*.png pacman.gif
+
+      - name: Move output
+        run: |
+          mkdir dist
+          mv pacman.gif dist/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+          publish_branch: output
