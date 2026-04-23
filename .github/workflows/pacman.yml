@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  pages: write
+  id-token: write
+  contents: read
 
 jobs:
   build:
@@ -28,9 +30,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: codewithduong05
 
-      - name: Deploy SVG
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: src/dist
-          publish_branch: output
+          path: src/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
