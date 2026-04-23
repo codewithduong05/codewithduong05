@@ -2,7 +2,7 @@ name: Generate Pacman
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 
 jobs:
@@ -12,16 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: Install deps
-        run:  npm install 
+      - name: Install dependencies
+        run: npm install
+        working-directory: src
 
       - name: Run generator
-        run: |
-          cd apps/generator
-          node index.js
+        run: npm run build
+        working-directory: src
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: codewithduong05
