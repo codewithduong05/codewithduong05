@@ -1,4 +1,6 @@
-// src/svg.jsexport function generateFrame(grid, points, frame) {
+// src/svg.js
+
+export function generateFrame(grid, points, frame) {
   let dots = ""
 
   // 1. render full grid (luôn có nền)
