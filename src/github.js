@@ -1,3 +1,5 @@
+import fetch from "node-fetch"
+
 export async function fetchContributions(username, token) {
   const query = `
   {
@@ -24,5 +26,11 @@ export async function fetchContributions(username, token) {
   })
 
   const data = await res.json()
+
+  if (!data?.data?.user) {
+    console.error("GitHub API error:", JSON.stringify(data))
+    return []
+  }
+
   return data.data.user.contributionsCollection.contributionCalendar.weeks
 }
