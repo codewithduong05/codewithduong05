@@ -6,9 +6,10 @@
   </picture>
 </a>
 ## pacman
-![pacman](https://github.com/codewithduong05/codewithduong05/blob/output/pacman.svg)
-
-
+<p align="center">
+  <img src="https://img.shields.io/github/stars/codewithduong05/codewithduong05?style=for-the-badge" />
+  <img src="https://img.shields.io/github/followers/codewithduong05?style=for-the-badge" />
+</p>
 ## 🐍 Contribution Snake
 
 <p align="center">
