@@ -1,0 +1,33 @@
+name: Generate Pacman
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install deps
+        run:  npm install 
+
+      - name: Run generator
+        run: |
+          cd apps/generator
+          node index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: codewithduong05
+
+      - name: Deploy SVG
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: dist
+          publish_branch: output
