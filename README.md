@@ -7,10 +7,7 @@
 </a>
 
 ## pacman
-<p align="center">
-  <img src="https://img.shields.io/github/stars/codewithduong05/codewithduong05?style=for-the-badge" />
-  <img src="https://img.shields.io/github/followers/codewithduong05?style=for-the-badge" />
-</p>
+<img src="https://raw.githubusercontent.com/codewithduong05/codewithduong05/output/pacman.gif" />
 
 ## 🐍 Contribution Snake
 
