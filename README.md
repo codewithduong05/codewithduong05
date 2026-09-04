@@ -1,3 +1,12 @@
+<div  align="center">
+  <img
+    width="100%"
+    src="./assets/banner.png"
+    alt="codewithme — Văn Dương, developer"
+  />
+
+
+ </div>
 <h1 align="center">Hi 👋! My name is Duong and I'm a Software Developer, from VietNam</h1>
 
 ###
